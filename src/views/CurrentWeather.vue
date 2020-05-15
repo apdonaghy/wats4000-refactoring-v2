@@ -12,8 +12,10 @@
 <weather-conditions v-bind:conditions="weatherData.main"></weather-conditions>
 
     </div>
-        <error-list v-bind:errorList="errors"></error-list>
-
+    <div v-else>
+      <h2>Loading...</h2>
+    </div>
+    <error-list v-bind:errorList="errors"></error-list>
   </div>
 </template>
 

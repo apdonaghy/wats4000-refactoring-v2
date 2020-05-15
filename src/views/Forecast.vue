@@ -9,21 +9,14 @@
     <ul v-if="weatherData && errors.length===0" class="forecast">
       <li v-for="(forecast,index) in weatherData.list" :key="index">
         <h3>{{ forecast.dt|formatDate }}</h3>
-
-<weather-summary v-bind:weatherData="forecast.weather"></weather-summary>
-<weather-conditions v-bind:conditions="forecast.main"></weather-conditions>
-
-        <dl>
-            <dt>Humidity</dt>
-            <dd>{{ forecast.main.humidity }}%</dd>
-            <dt>High</dt>
-            <dd>{{ forecast.main.temp_max }}&deg;F</dd>
-            <dt>Low</dt>
-            <dd>{{ forecast.main.temp_min }}&deg;F</dd>
-        </dl>
+        <weather-summary v-bind:weatherData="forecast.weather"></weather-summary>
+        <weather-conditions v-bind:conditions="forecast.main"></weather-conditions>
       </li>
     </ul>
-        <error-list v-bind:errorList="errors"></error-list>
+    <div v-else>
+      <h2>Loading...</h2>
+    </div>
+    <error-list v-bind:errorList="errors"></error-list>
 
   </div>
 </template>
@@ -60,6 +53,7 @@ export default {
     formatDate: function (timestamp){
       let date = new Date(timestamp * 1000);
       const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      
       let daynum = date.getDate();
       let month = date.getMonth();
 
@@ -74,12 +68,12 @@ export default {
         hour = hour + 'AM';
       }
       return `${ months[month] } ${ daynum } @ ${ hour }`;
-    },
-    components: {
+    }
+  },
+  components: {
     'weather-summary': WeatherSummary,
     'weather-conditions': WeatherConditions,
     'error-list': ErrorList
-  }
   }
 }
 </script>
@@ -105,7 +99,4 @@ li {
 a {
   color: #42b983;
 }
-
 </style>
-
-
