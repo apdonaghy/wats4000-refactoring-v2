@@ -1,13 +1,13 @@
 <template>
         <dl>
-          <dt v-if="conditions.temp != conditions.temp_min">Current Temperature</dt>
+          <dt v-if="conditions.temp != conditions.temp_min">Temperature</dt>
           <dd v-if="conditions.temp != conditions.temp_min">{{ conditions.temp }}%</dd>
           <dt>Humidity</dt>
-          <dd>{{ weatherData.main.humidity }}%</dd>
+          <dd>{{ conditions.humidity }}%</dd>
           <dt>High</dt>
-          <dd>{{ weatherData.main.temp_max }}&deg;F</dd>
+          <dd>{{ conditions.temp_max }}&deg;F</dd>
           <dt>Low</dt>
-          <dd>{{ weatherData.main.temp_min }}&deg;F</dd>
+          <dd>{{ conditions.temp_min }}&deg;F</dd>
       </dl>
 </template>
 
