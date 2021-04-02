@@ -10,12 +10,12 @@
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: #062748;
   margin-top: 60px;
   padding: 20px;
 }
 html {
-  background: #666;
+  background: rgb(40, 40, 40);
   padding: 0;
   margin: 0;
 }
@@ -23,7 +23,7 @@ body {
   width: 75%;
   margin: 0 auto;
   padding: 0;
-  background: #fff;
+ 
 }
 /* dl {
   padding: 5px;
