@@ -7,13 +7,8 @@
     </p>
     <div v-if="weatherData && errors.length===0">
 
-      <!-- TODO: Make weather summary be in a child component. -->
-      <div v-for="(weatherSummary,index) in weatherData.weather" :key="index" class="weatherSummary">
-          <img v-bind:src="'http://openweathermap.org/img/w/' + weatherSummary.icon + '.png'" v-bind:alt="weatherSummary.main">
-          <br>
-          <b>{{ weatherSummary.main }}</b>
-      </div>
-      <!-- TODO: Make dl of weather data be in a child component. -->
+        <weather-summary v-bind:weatherData="weatherData.weather"></weather-summary>
+   
       <dl>
           <dt>Current Temp</dt>
           <dd>{{ weatherData.main.temp }}&deg;F</dd>
@@ -38,7 +33,8 @@
 </template>
 
 <script>
-import axios from 'axios';
+import {API} from '@/common/api';
+import WeatherSummary from '@/components/WeatherSummary';
 
 export default {
   name: 'CurrentWeather',
@@ -51,11 +47,9 @@ export default {
   },
   created () {
     // TODO: Improve base config for API
-    axios.get('//api.openweathermap.org/data/2.5/weather', {
+    API.get('weather', {
       params: {
           id: this.$route.params.cityId,
-          units: 'imperial',
-          APPID: 'acc79f6c2e05c9a0c967b8003e683848'
       }
     })
     .then(response => {
@@ -64,6 +58,9 @@ export default {
     .catch(error => {
       this.errors.push(error)
     });
+  },
+     components: {
+    'weather-summary': WeatherSummary
   }
 }
 </script>
@@ -89,6 +86,7 @@ li {
   min-height: 300px;
   border: solid 1px #e8e8e8;
   padding: 10px;
+  background:#c4c4c4;
 }
 .weatherSummary {
   display: inline-block;
